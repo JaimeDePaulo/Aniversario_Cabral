@@ -1,0 +1,6 @@
+{
+  "name": "Cartão Digital de Aniversário - Manuel Cabral Domingos",
+  "description": "Cartão digital de aniversário interactivo com contagem decrescente, gratidão e homenagem a Manuel Cabral Domingos no dia 14 de Novembro de 2026.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
