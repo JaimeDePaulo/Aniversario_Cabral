@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Utensils, Calendar, MapPin, Clock, MessageCircle, Sparkles, CheckCircle2 } from 'lucide-react';
 import { MANUEL_CONTACT } from '../constants/contact';
+import fellowshipTableImg from '../assets/images/fellowship_table_celebration_1794306469088.jpg';
 
 // Lunch Date: Sunday, November 29, 2026 at 12:30 PM
 const LUNCH_DATE = new Date('2026-11-29T12:30:00');
 
 export const FellowshipLunchSection: React.FC = () => {
+  const [imgSrc, setImgSrc] = useState(fellowshipTableImg);
   const [daysUntilLunch, setDaysUntilLunch] = useState<number>(0);
   const [isPastLunch, setIsPastLunch] = useState<boolean>(false);
 
@@ -67,9 +69,14 @@ export const FellowshipLunchSection: React.FC = () => {
             {/* Column 1: Fellowship banquet photo */}
             <div className="lg:col-span-5 relative min-h-[260px] lg:min-h-full">
               <img
-                src="/src/assets/images/fellowship_table_celebration_1794306469088.jpg"
+                src={imgSrc}
                 alt="Mesa de confraternização com velas e folhagens"
                 referrerPolicy="no-referrer"
+                onError={() => {
+                  if (imgSrc !== './images/almoco.jpg') {
+                    setImgSrc('./images/almoco.jpg');
+                  }
+                }}
                 className="w-full h-full object-cover min-h-[280px]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0C152F] via-transparent to-black/20 lg:bg-gradient-to-r lg:from-transparent lg:to-[#0C152F]" />

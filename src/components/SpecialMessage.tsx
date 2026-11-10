@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BookOpen, Sparkles } from 'lucide-react';
+import sacredBibleImg from '../assets/images/hero_sacred_bible_cross_1794306468341.jpg';
 
 export const SpecialMessage: React.FC = () => {
+  const [imgSrc, setImgSrc] = useState(sacredBibleImg);
+
   return (
     <section id="mensagem" className="relative py-20 px-4 sm:px-6 lg:px-8 border-t border-[#D4AF37]/15 overflow-hidden">
       
@@ -29,17 +32,29 @@ export const SpecialMessage: React.FC = () => {
           
           {/* Column 1: Sacred Bible Artwork with gold border */}
           <div className="lg:col-span-5 relative group">
-            <div className="relative rounded-2xl overflow-hidden border border-[#D4AF37]/40 shadow-[0_15px_35px_rgba(0,0,0,0.6)]">
+            <div className="relative rounded-2xl overflow-hidden border border-[#D4AF37]/40 shadow-[0_15px_35px_rgba(0,0,0,0.6)] bg-gradient-to-b from-[#16254E] to-[#0A1226] min-h-[320px] sm:min-h-[400px] flex items-center justify-center">
+              
+              {/* Fallback sacred placeholder in case of asset delay */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center text-[#D4AF37]/40 pointer-events-none">
+                <BookOpen className="w-16 h-16 mb-2 text-[#D4AF37]/50" />
+                <span className="font-display text-xs tracking-widest uppercase">Sagrada Escritura</span>
+              </div>
+
               <img
-                src="/src/assets/images/hero_sacred_bible_cross_1794306468341.jpg"
+                src={imgSrc}
                 alt="Sagrada Escritura iluminada pela luz divina"
                 referrerPolicy="no-referrer"
-                className="w-full h-[320px] sm:h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
+                onError={() => {
+                  if (imgSrc !== './images/biblia.jpg') {
+                    setImgSrc('./images/biblia.jpg');
+                  }
+                }}
+                className="relative z-10 w-full h-[320px] sm:h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0B132B] via-transparent to-black/30" />
+              <div className="absolute inset-0 z-20 bg-gradient-to-t from-[#0B132B] via-transparent to-black/30 pointer-events-none" />
               
               {/* Bottom Art Inscription */}
-              <div className="absolute bottom-4 left-4 right-4 p-3 rounded-xl bg-[#0B132B]/85 backdrop-blur-md border border-[#D4AF37]/30 text-center">
+              <div className="absolute bottom-4 left-4 right-4 z-30 p-3 rounded-xl bg-[#0B132B]/85 backdrop-blur-md border border-[#D4AF37]/30 text-center">
                 <span className="font-display text-xs tracking-widest text-[#F3E5AB] uppercase">
                   Fé · Dedicação · Propósito
                 </span>
